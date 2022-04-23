@@ -13,12 +13,12 @@
 </head>
 
 <body>
-  <div class="container-fluid h-100">
+  <div id="pizza-restaurant" class="container-fluid h-100">
     <div class="row h-100">
       <div class="col-9 p-4">
         <div class="text-center">
           <h3>
-            Order Now
+            Order Now 🍕
           </h3>
           <p>
             Place your order online
@@ -26,12 +26,14 @@
         </div>
 
         <div class="row row-cols-3">
-          <div class="col d-flex item ">
-            <img class="w-50" src="https://foodish-api.herokuapp.com/images/pizza/pizza72.jpg" alt="pizza-1">
-            <div class="p-3">
-              <h5>Pizza 1</h5>
-              <h6>$17.00</h6>
-              <button type="button">Order</button>
+          <div class="col " v-for="(item, index) in menu" :key="index">
+            <div class="d-flex item">
+              <img class="w-50 " :src="item.image" :alt="item.name">
+              <div class="p-3">
+                <h5>{{item.name}}</h5>
+                <h6>${{item.price.toFixed(2)}}</h6>
+                <button type="button" @click="addPizza(item.id)">Order</button>
+              </div>
             </div>
           </div>
         </div>
@@ -42,30 +44,36 @@
           Your Cart
         </h3>
 
-        <div class="order-item p-4 mb-4">
-          <h5>
-            Pizza 1
-          </h5>
-          <p>
-            $17.00 x 1 = $17.00
-          </p>
+        <div class="order-items" v-if="cart.length > 0">
+          <div class="order-item p-4 mb-4" v-for=" (item, index) in cart" :key="index">
+            <h5>
+              {{item.name}}
+            </h5>
+            <p>
+              ${{item.price.toFixed(2)}} x {{item.quantity}} = ${{(item.price * item.quantity).toFixed(2)}}
+            </p>
 
-          <div class="mb-3">
-            <button type="button">+</button>
-            <button type="button">-</button>
+            <div class=" mb-3">
+              <button type="button" @click="addItem(item.id)">+</button>
+              <button type="button" @click="reduceItem(item.id)">-</button>
+            </div>
+
+            <p>
+              <strong>Size:</strong> {{item.size}}
+            </p>
           </div>
-
-          <p>
-            <strong>Size:</strong> Medium
-          </p>
         </div>
 
-        <h4 class="text-center">
-          Total: $17.00
+        <h4 class="text-center mt-4">
+          Total: ${{ getTotalPrice() }}
         </h4>
       </div>
     </div>
   </div>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="./main.js"></script>
+
 </body>
 
 </html>
