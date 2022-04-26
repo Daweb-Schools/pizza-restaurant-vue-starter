@@ -10,63 +10,90 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
   <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
 </head>
 
 <body>
   <div id="pizza-restaurant" class="container-fluid h-100">
     <div class="row h-100">
       <div class="col-9 p-4">
-        <div class="text-center">
-          <h3>
-            Order Now 🍕
-          </h3>
-          <p>
-            Place your order online
+        <div class="text-center title-holder">
+          <span class="subtitle">
+            CHOOSE YOUR FLAVOR
+          </span>
+          <h1 class="title">
+            THE BEST PIZZA MENU IN TOWN
+          </h1>
+          <p class="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit arcu in pretium molestie. Interdum et
+            malesuada fames ac.
           </p>
         </div>
 
-        <div class="row row-cols-3">
-          <div class="col " v-for="(item, index) in menu" :key="index">
-            <div class="d-flex item">
-              <img class="w-50 " :src="item.image" :alt="item.name">
+        <div class="row row-cols-4 mt-4">
+          <div class="col justify-content-center text-center" v-for="(item, index) in menu" :key="index">
+            <div class="d-flex flex-column item">
+              <img class="w-100" :src="`./images/${item.image}`" :alt="item.name">
               <div class="p-3">
-                <h5>{{item.name}}</h5>
-                <h6>${{item.price.toFixed(2)}}</h6>
-                <button type="button" @click="addPizza(item.id)">Order</button>
+                <h5 class="item-name">{{item.name}}</h5>
+                <h6 class="item-price">${{item.price.toFixed(2)}}</h6>
+                <button type="button" class="add-cart" @click="addPizza(item.id)">Add to Cart</button>
               </div>
             </div>
           </div>
         </div>
 
       </div>
-      <div class="col-3 total-section p-4">
-        <h3 class="text-center">
-          Your Cart
+      <div class="col-3 cart p-4">
+        <h3 class="title">
+          Your Basket
         </h3>
 
         <div class="order-items" v-if="cart.length > 0">
-          <div class="order-item p-4 mb-4" v-for=" (item, index) in cart" :key="index">
-            <h5>
-              {{item.name}}
-            </h5>
-            <p>
-              ${{item.price.toFixed(2)}} x {{item.quantity}} = ${{(item.price * item.quantity).toFixed(2)}}
-            </p>
+          <div class="order-item mb-4" v-for="(item, index) in cart" :key="index">
+            <img class="order-item-image" :src="`./images/${item.image}`" :alt="item.name">
+            <div class="order-item-content">
+              <h5>
+                {{item.name}} - ${{item.price.toFixed(2)}}
+              </h5>
+              <p>
+                <button type="button" class="add" @click="addItem(item.id)">+</button>
+                {{item.quantity}}
+                <button type="button" class="remove" @click="reduceItem(item.id)">-</button>
+              </p>
 
-            <div class=" mb-3">
-              <button type="button" @click="addItem(item.id)">+</button>
-              <button type="button" @click="reduceItem(item.id)">-</button>
+
+              <div class="order-item-details">
+                <span>
+                  <strong>Calories:</strong> {{item.calories}}
+                </span>
+                <span>
+                  <strong>Squirrels:</strong> {{item.squirrels}}
+                </span>
+                <span>
+                  <strong>Fats:</strong> {{item.fats}}
+                </span>
+              </div>
             </div>
-
-            <p>
-              <strong>Size:</strong> {{item.size}}
-            </p>
+            <button class="remove-icon" type="button" @click="removeItem(item.id)">x</button>
           </div>
         </div>
+        <div class="cart-empty" v-else>
+          <p class="text-center">
+            Your basket is empty
+          </p>
+        </div>
 
-        <h4 class="text-center mt-4">
-          Total: ${{ getTotalPrice() }}
-        </h4>
+        <div class="total-section">
+          <h6 class="total-title">Total payment:</h6>
+          <span class="amount">
+            ${{ getTotalPrice() }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
