@@ -8,7 +8,6 @@ Vue.createApp({
           name: "BISMARCK",
           price: 30,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -17,7 +16,6 @@ Vue.createApp({
           name: "FIORI DI ZUCCA",
           price: 50,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -26,7 +24,6 @@ Vue.createApp({
           name: "VALDOSTANA",
           price: 55,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -35,7 +32,6 @@ Vue.createApp({
           name: "PIZZA TARTUFATA",
           price: 45,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -44,7 +40,6 @@ Vue.createApp({
           name: "FRANCESCANA",
           price: 25,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -53,7 +48,6 @@ Vue.createApp({
           name: "BOSCAIOLA",
           price: 85,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -62,7 +56,6 @@ Vue.createApp({
           name: "MARE E MONTI",
           price: 65,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
         {
@@ -71,7 +64,6 @@ Vue.createApp({
           name: "MARE E MONTI",
           price: 95,
           calories: "800 kcal",
-          squirrels: "30 g",
           fats: "50 g",
         },
       ],
